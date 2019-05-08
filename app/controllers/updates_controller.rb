@@ -1,5 +1,6 @@
 class UpdatesController < ApplicationController
   before_action :set_update, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token, :only => [:create]
 
   # GET /updates
   # GET /updates.json
@@ -24,7 +25,8 @@ class UpdatesController < ApplicationController
   # POST /updates
   # POST /updates.json
   def create
-    @update = Update.new(update_params)
+    device = Device.find_or_create_by(mac: create_params['mac'])
+    @update = Update.new(device_id: device.id, ip_address: create_params['ip_address'])
 
     respond_to do |format|
       if @update.save
@@ -70,5 +72,9 @@ class UpdatesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def update_params
       params.require(:update).permit(:ip_address, :device_id)
+    end
+
+    def create_params
+      params.require(:update).permit(:ip_address, :mac)
     end
 end
