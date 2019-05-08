@@ -5,7 +5,9 @@ class UpdatesController < ApplicationController
   # GET /updates
   # GET /updates.json
   def index
-    @updates = Update.all
+    # We only need latest update per device
+    latest_ids = Update.group(:device_id).maximum(:id).values
+    @updates = Update.where(id: latest_ids)
   end
 
   # GET /updates/1
