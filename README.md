@@ -38,3 +38,7 @@ Just send a `POST` request to `<ip>:3000/updates.json` with json content using f
 ```
 
 where `name` is an optional identifier for the device.
+
+## Web interface
+
+The devices are reachable via `localhost:3000/devices` and the updates via `localhost:3000/updates`.
