@@ -9,13 +9,9 @@ sudo apt update
 sudo apt install docker-compose
 ```
 
-Create `.env` file in root with rails secret key (random string - can be generated using `rake secret`):
+Create copy of `.env.example` as `.env` file in root with rails secret key (random string - can be generated using `rake secret`)
 
-```text
-RAILS_SERCREdasdas=dsasjdsajdiorethjreiuthrjtureh
-```
-
-Build
+Build using docker-compose
 
 ```shell
 docker-compose build
