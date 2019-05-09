@@ -1,24 +1,44 @@
-# README
+# My Devices
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+Install docker-compose
 
-* Ruby version
+```shell
+sudo apt update
+sudo apt install docker-compose
+```
 
-* System dependencies
+Create `.env` file in root with rails secret key (random string - can be generated using `rake secret`):
 
-* Configuration
+```text
+RAILS_SERCREdasdas=dsasjdsajdiorethjreiuthrjtureh
+```
 
-* Database creation
+Build
 
-* Database initialization
+```shell
+docker-compose build
+```
 
-* How to run the test suite
+Run container
 
-* Services (job queues, cache servers, search engines, etc.)
+```shell
+docker-compose -d up
+```
 
-* Deployment instructions
+## Sending Updates
 
-* ...
+Just send a `POST` request to `<ip>:3000/updates.json` with json content using following format:
+
+```json
+{
+  "update": {
+    "ip_address": "172.168.1.2",
+    "mac": "aa:bb:cc:dd:ee:ff",
+    "name": "identifier"
+  }
+}
+```
+
+where `name` is an optional identifier for the device.

@@ -1,0 +1,15 @@
+version: "2"
+services:
+  api:
+    image: 'my-devices'
+    build: .
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - data:/app/data
+    env_file:
+      - ./.env
+
+volumes:
+  data:
