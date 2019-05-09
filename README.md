@@ -20,7 +20,7 @@ docker-compose build
 Run container
 
 ```shell
-docker-compose -d up
+docker-compose up -d
 ```
 
 ## Sending Updates
