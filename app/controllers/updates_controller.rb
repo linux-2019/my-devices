@@ -27,10 +27,14 @@ class UpdatesController < ApplicationController
   # POST /updates
   # POST /updates.json
   def create
-    device = Device.find_or_create_by(mac: create_params['mac'])
-    @update = Update.new(device_id: device.id, ip_address: create_params['ip_address'])
-
     respond_to do |format|
+      if (request.format == 'json')
+        device = Device.find_or_create_by(mac: create_params['mac'])
+        @update = Update.new(device_id: device.id, ip_address: create_params['ip_address'])
+      else
+        @update = Update.new(update_params)
+      end
+
       if @update.save
         format.html { redirect_to @update, notice: 'Update was successfully created.' }
         format.json { render :show, status: :created, location: @update }
