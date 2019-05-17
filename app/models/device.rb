@@ -1,7 +1,8 @@
 class Device < ApplicationRecord
   validates :mac, format: { with: /\A([0-9A-Fa-f]{1,2}[-:]){5}([0-9A-Fa-f]{1,2})\z/ },
-    presence: true, uniqueness: true
+  presence: true, uniqueness: true
   has_many :updates
+  has_many :stats
 
   before_save :downcase_mac
   

@@ -1,0 +1,57 @@
+<%= form_with(model: stat, local: true) do |form| %>
+  <% if stat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(stat.errors.count, "error") %> prohibited this stat from being saved:</h2>
+
+      <ul>
+      <% stat.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :device_id %>
+    <%= form.number_field :device_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :disk_free %>
+    <%= form.text_field :disk_free %>
+  </div>
+
+  <div class="field">
+    <%= form.label :disk_total %>
+    <%= form.text_field :disk_total %>
+  </div>
+
+  <div class="field">
+    <%= form.label :memory_free %>
+    <%= form.text_field :memory_free %>
+  </div>
+
+  <div class="field">
+    <%= form.label :memory_total %>
+    <%= form.text_field :memory_total %>
+  </div>
+
+  <div class="field">
+    <%= form.label :uptime %>
+    <%= form.text_field :uptime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hostname %>
+    <%= form.text_field :hostname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :kernel %>
+    <%= form.text_field :kernel %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

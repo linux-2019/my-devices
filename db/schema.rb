@@ -10,11 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_08_173449) do
+ActiveRecord::Schema.define(version: 2019_05_17_125413) do
 
   create_table "devices", force: :cascade do |t|
     t.string "mac"
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stats", force: :cascade do |t|
+    t.integer "device_id"
+    t.string "disk_free"
+    t.string "disk_total"
+    t.string "memory_free"
+    t.string "memory_total"
+    t.string "uptime"
+    t.string "hostname"
+    t.string "kernel"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
