@@ -25,9 +25,16 @@ class StatsController < ApplicationController
   # POST /stats
   # POST /stats.json
   def create
-    @stat = Stat.new(stat_params)
-
     respond_to do |format|
+      if (request.format == 'json')
+        device = Device.find_or_create_by(mac: device_params['mac'])
+        device.save
+        @stat = Stat.new(create_params)
+        @stat.device_id = device.id
+      else
+        @stat = Stat.new(stat_params)
+      end
+
       if @stat.save
         format.html { redirect_to @stat, notice: 'Stat was successfully created.' }
         format.json { render :show, status: :created, location: @stat }
@@ -71,5 +78,13 @@ class StatsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def stat_params
       params.require(:stat).permit(:device_id, :disk_free, :disk_total, :memory_free, :memory_total, :uptime, :hostname, :kernel)
+    end
+
+    def device_params
+      params.require(:stat).permit(:mac)
+    end
+
+    def create_params
+      params.require(:stat).permit(:disk, :memory, :kernel, :hostname, :uptime)
     end
 end
