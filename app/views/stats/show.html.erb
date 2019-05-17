@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Device:</strong>
+  <%= @stat.device_id %>
+</p>
+
+<p>
+  <strong>Disk free:</strong>
+  <%= @stat.disk_free %>
+</p>
+
+<p>
+  <strong>Disk total:</strong>
+  <%= @stat.disk_total %>
+</p>
+
+<p>
+  <strong>Memory free:</strong>
+  <%= @stat.memory_free %>
+</p>
+
+<p>
+  <strong>Memory total:</strong>
+  <%= @stat.memory_total %>
+</p>
+
+<p>
+  <strong>Update:</strong>
+  <%= @stat.update %>
+</p>
+
+<p>
+  <strong>Hostname:</strong>
+  <%= @stat.hostname %>
+</p>
+
+<p>
+  <strong>Kernel:</strong>
+  <%= @stat.kernel %>
+</p>
+
+<%= link_to 'Edit', edit_stat_path(@stat) %> |
+<%= link_to 'Back', stats_path %>
