@@ -14,4 +14,8 @@ class Device < ApplicationRecord
     last_update = self.updates.last
     last_update ? last_update.ip_address : ""
   end
+
+  def last_stats
+    self.stats.last || Stat.new
+  end
 end

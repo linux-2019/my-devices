@@ -1,26 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Devices</h1>
+<div class="row">
+  <div class="col s10 offset-s1">
+    <h1>Known Devices</h1>
+  </div>
+</div>
 
-<table class="highlight">
-  <thead>
-    <tr>
-      <th>MAC Address</th>
-      <th>Name</th>
-      <th>Last Known IP</th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="row">
+  <div class="col s10 offset-s1">
+    <table class="highlight">
+      <thead>
+        <tr>
+          <th>MAC Address</th>
+          <th>Name</th>
+          <th>Last Known IP</th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @devices.each do |device| %>
-      <tr>
-        <td><%= device.mac %></td>
-        <td><%= (device.name || 'Unnamed') %></td>
-        <td><%= device.last_ip %></td>
-        <td><%= link_to "Details", device,
-          class: "btn btn-inverse", class: "waves-effect waves-light btn-small" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @devices.each do |device| %>
+          <tr>
+            <td><%= device.mac %></td>
+            <td><%= (device.name || 'Unnamed') %></td>
+            <td><%= device.last_ip %></td>
+            <td><%= link_to "Details", device,
+              class: "btn btn-inverse", class: "waves-effect waves-light btn-small" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
