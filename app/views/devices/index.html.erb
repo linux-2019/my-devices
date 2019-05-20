@@ -2,28 +2,9 @@
 
 <h1>Devices</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Mac</th>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @devices.each do |device| %>
-      <tr>
-        <td><%= device.mac %></td>
-        <td><%= device.name %></td>
-        <td><%= link_to 'Show', device %></td>
-        <td><%= link_to 'Edit', edit_device_path(device) %></td>
-        <td><%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Device', new_device_path %>
+<div class="collection">
+  <% @devices.each do |device| %>
+    <%= link_to "#{device.mac} - #{(device.name || 'Unnamed Device')}",
+      device, class: "collection-item" %>
+  <% end %>
+</div>
