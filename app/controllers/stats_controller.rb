@@ -29,7 +29,9 @@ class StatsController < ApplicationController
       if (request.format == 'json')
         device = Device.find_or_create_by(mac: device_params['mac'])
         device.save
-        @stat = Stat.new(create_params)
+        @stat = Stat.new(
+          stats_params
+        )
         @stat.device_id = device.id
       else
         @stat = Stat.new(stat_params)
@@ -85,6 +87,22 @@ class StatsController < ApplicationController
     end
 
     def create_params
-      params.require(:stat).permit(:disk, :memory, :kernel, :hostname, :uptime)
+      params.require(:stat).permit(:kernel, :hostname, :uptime,
+        disk: [:free, :total], memory: [:free, :total])
     end
+
+    def stats_params
+      data = create_params
+  
+      {
+        disk_free: (data.has_key?('disk') ? data['disk']['free'] : nil),
+        disk_total: (data.has_key?('disk') ? data['disk']['total'] : nil),
+        memory_free: (data.has_key?('memory') ? data['memory']['free'] : nil),
+        memory_total: (data.has_key?('memory') ? data['memory']['total'] : nil),
+        uptime: (data.has_key?('uptime') ? data['uptime'] : nil),
+        hostname: (data.has_key?('hostname') ? data['hostname'] : nil),
+        kernel: (data.has_key?('kernel') ? data['kernel'] : nil)
+      }
+    end
+    
 end
