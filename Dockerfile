@@ -24,7 +24,7 @@ ENV RAILS_LOG_TO_STDOUT true
 COPY . ./
 
 # Precompile Rails assets
-RUN rails assets:precompile
+# RUN rails assets:precompile
 
 # Create the database
 RUN rails db:migrate
