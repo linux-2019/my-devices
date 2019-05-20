@@ -9,4 +9,9 @@ class Device < ApplicationRecord
   def downcase_mac
     self.mac.downcase!
   end
+  
+  def last_ip
+    last_update = self.updates.last
+    last_update ? last_update.ip_address : ""
+  end
 end

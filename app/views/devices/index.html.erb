@@ -2,9 +2,25 @@
 
 <h1>Devices</h1>
 
-<div class="collection">
-  <% @devices.each do |device| %>
-    <%= link_to "#{device.mac} - #{(device.name || 'Unnamed Device')}",
-      device, class: "collection-item" %>
-  <% end %>
-</div>
+<table class="highlight">
+  <thead>
+    <tr>
+      <th>MAC Address</th>
+      <th>Name</th>
+      <th>Last Known IP</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @devices.each do |device| %>
+      <tr>
+        <td><%= device.mac %></td>
+        <td><%= (device.name || 'Unnamed') %></td>
+        <td><%= device.last_ip %></td>
+        <td><%= link_to "Details", device,
+          class: "btn btn-inverse", class: "waves-effect waves-light btn-small" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
