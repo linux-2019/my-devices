@@ -1,5 +1,9 @@
 FROM ruby:2.5
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN apt-get update -qq && apt-get install -y postgresql-client
+
+# https://github.com/nodesource/distributions#installation-instructions
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+        && apt-get install -y nodejs
 
 # Configure the main working directory. This is the base
 # directory used in any further RUN, COPY, and ENTRYPOINT
@@ -24,7 +28,7 @@ ENV RAILS_LOG_TO_STDOUT true
 COPY . ./
 
 # Precompile Rails assets
-# RUN rails assets:precompile
+RUN rails assets:precompile
 
 # Create the database
 RUN rails db:migrate
