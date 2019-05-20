@@ -27,7 +27,7 @@ class StatsController < ApplicationController
   def create
     respond_to do |format|
       if (request.format == 'json')
-        device = Device.find_or_create_by(mac: device_params['mac'])
+        device = Device.find_or_create_by(mac: device_params['mac'].downcase!)
         device.save
         @stat = Stat.new(
           stats_params
