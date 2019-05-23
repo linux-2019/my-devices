@@ -29,7 +29,7 @@ class UpdatesController < ApplicationController
   def create
     respond_to do |format|
       if (request.format == 'json')
-        device = Device.find_or_create_by(mac: create_params['mac'].downcase)
+        device = Device.find_or_create_by(mac: helpers.expand_mac(device_params['mac'].downcase))
         device.name = create_params['name'] if !create_params['name'].nil?
         device.save
         @update = Update.new(device_id: device.id, ip_address: create_params['ip_address'])
